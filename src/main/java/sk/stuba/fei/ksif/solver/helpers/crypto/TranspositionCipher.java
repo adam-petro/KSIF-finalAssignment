@@ -1,4 +1,4 @@
-package sk.stuba.fei.ksif.solver.helpers.common;
+package sk.stuba.fei.ksif.solver.helpers.crypto;
 
 
 public class TranspositionCipher extends Cipher<TranspositionKey> {
