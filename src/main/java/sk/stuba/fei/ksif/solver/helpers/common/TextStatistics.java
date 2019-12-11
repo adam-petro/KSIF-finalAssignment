@@ -5,7 +5,6 @@ import java.lang.Math;
 
 public class TextStatistics {
 
-
     public static Map readNgram(String txt, int n, boolean relativeFr) {
         Map<String, Double> map = new HashMap<>();
 
@@ -14,7 +13,7 @@ public class TextStatistics {
         }
 
         //StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < txt.length() - (n - 1); i++) {
+        for (int i = 0; i < txt.length() - n; i++) {
             String subStr = txt.substring(i, i + n);
 
             if (!map.containsKey(subStr)) {

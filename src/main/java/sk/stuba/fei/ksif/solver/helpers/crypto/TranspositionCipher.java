@@ -1,12 +1,15 @@
 package sk.stuba.fei.ksif.solver.helpers.crypto;
 
 
+import sk.stuba.fei.ksif.solver.helpers.common.Text;
+
 public class TranspositionCipher extends Cipher<TranspositionKey> {
 
 
     @Override
     public String encryption(TranspositionKey key, String string) {
         // [stlpce][riadky]
+        string = Text.convertToTSA(string,false);
         Integer[] permutation = key.getPermutation();
         int lengthOfPermutation = key.getPermutation().length;
         int numberOfLines = intDivideToUp(string.length(),lengthOfPermutation);
@@ -38,7 +41,6 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
         }
 
 
-
         matrixOfChars = permutateCols(matrixOfChars,permutation);
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -58,7 +60,8 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
             // po stlpoch
             for (i = 0; i < lengthOfPermutation; i++){
                 for (j = 0; j < numberOfLines; j++){
-                    stringBuilder.append(matrixOfChars[j][i]);
+                    if(matrixOfChars[j][i]!=' ')
+                        stringBuilder.append(matrixOfChars[j][i]);
                 }
             }
 
@@ -84,34 +87,40 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
 
         int i = 0, j = 0;
         int counter = 0;
-
+        int longcol = string.length() % permutation.length;
 
         while (counter < string.length()){
             if (i < numberOfLines && j < lengthOfPermutation){
                 if (Character.isLetter(string.charAt(counter))) {
                     matrixOfChars[i][j] = string.charAt(counter);
-                    j++;
-                    if (j == lengthOfPermutation){
-                        i++;
-                        j = 0;
+                    if(i==numberOfLines-1 && index(permutation,j+1)> longcol-1 && longcol>0){
+                        //i++;
+                        matrixOfChars[i][j] = ' ';
+                        counter--;
+                    }
+                    i++;
+                    if (i == numberOfLines){
+                        j++;
+                        i = 0;
                     }
                 }
                 counter++;
             }
         }
-
+        //printMatrix(matrixOfChars);
         matrixOfChars = permutateCols(matrixOfChars,permutation);
-
+        //printMatrix(matrixOfChars);
         StringBuilder stringBuilder = new StringBuilder();
 
-        // po riadkoch
+        // po stlpoch
         for (i = 0; i < numberOfLines; i++){
             for (j = 0; j < lengthOfPermutation; j++){
-                stringBuilder.append(matrixOfChars[i][j]);
+                if(!(matrixOfChars[i][j]==' '))
+                    stringBuilder.append(matrixOfChars[i][j]);
             }
         }
 
-        // po stlpoch
+        // po riadkoch
         /*
         for (i = 0; i < lengthOfPermutation; i++){
             for (j = 0; j < numberOfLines; j++){
@@ -121,6 +130,12 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
          */
 
         return stringBuilder.toString();
+    }
+    public static int index(Integer[] perm, int j){
+        for(int i = 0; i < perm.length;i++)
+            if(perm[i]==j)
+                return i;
+        return -1;
     }
 
 

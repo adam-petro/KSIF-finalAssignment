@@ -4,34 +4,85 @@ import sk.stuba.fei.ksif.solver.helpers.crypto.TranspositionCipher;
 import sk.stuba.fei.ksif.solver.helpers.crypto.TranspositionKey;
 import sk.stuba.fei.ksif.solver.helpers.dictionary.Node;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static sk.stuba.fei.ksif.solver.helpers.common.Misc.fac;
+
 
 public class DictionaryHC {
 
 
     public static double HillClimb(String ciphertext){
+
+        final int maxkeyLen = 14;
+        final int minKeyLen = 2;
+        final int maxIterations = 1000000;
+
+
         List<String> words = Node.readDictionaryWords("dictionary_5000.txt");
         Node node = Node.loadDictionary(words);
 
         TranspositionCipher transpositionCipher  = new TranspositionCipher();
         TranspositionKey transpositionKey = new TranspositionKey(Key.randomKey(2));
 
-        int cycles = 1000;
-        int maxkeyLen = 20;
+
+        String ot = transpositionCipher.decryption(transpositionKey,ciphertext);
+        int[] factorials = new int[maxkeyLen];
+        for(int fac = 0; fac < maxkeyLen;fac++){
+            factorials[fac]=fac(fac+1);
+        }
         double fitness = node.evaluate(ciphertext,2,10);
-        String ot;
-        Integer[] perm;
+        double bestfitness = fitness;
 
+        Integer[] perm,bestPerm;
+        perm = Key.randomKey(2);
+        bestPerm = perm;
+        String bestot = new String();
+        int iteration = 0;
 
-        for (int i=2;i<maxkeyLen;++i){
-            perm = Key.randomKey(i);
+        for (int i=minKeyLen;i<maxkeyLen;++i){
+
             transpositionKey.setPermutation(perm);
-            while(fitness<0.60){
+
+            for(int j = 0; j < factorials[i-1];j++){
+                iteration++;
+
+                //if(j>factorials[i])break;
+                //swap
+
+                Key.swap(perm);
+                Integer[] oldPerm = perm;
+
+                //OT
                 ot = transpositionCipher.decryption(transpositionKey,ciphertext);
-                node.evaluate(ot,3,10);
+
+                //vyhodnotenie fitness
+                fitness = node.evaluate(ot,2,10);
+
+                //ak je sused lepsi
+                if(fitness > bestfitness){
+                    System.out.println(i+". "+iteration+". "+fitness+" "+transpositionKey.toString()+"\n"+ot);
+                    //if(fitness>0.63)break;
+                    bestfitness=fitness;
+                    bestot=ot;
+                    bestPerm = perm;
+                }
+
+
+                //ak nie vratim sa spat
+                else {
+                    perm = oldPerm;
+                }
+
+                //Ak je pocet iteracii pre permutaciu jednej dlzky vacsi ako dana konstatna
+                if (iteration==maxIterations){
+                    iteration=0;
+                    break;
+                }
             }
         }
+        System.out.println(bestPerm+"\n"+bestot);
 
         return 0.0;
     }

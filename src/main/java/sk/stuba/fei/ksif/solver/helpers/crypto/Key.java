@@ -9,11 +9,21 @@ public abstract class Key {
         Integer out[] = new Integer[len];
 
         for (int i=0;i<len;i++){
-            out[i]=i;
+            out[i]=i+1;
         }
         return out;
     }
-    public static int[] swap(int[] perm){
+
+    public static Integer[] append(Integer[] oldperm){
+        Integer [] out = new Integer[oldperm.length+1];
+        for(int i=0;i<oldperm.length;++i){
+            out[i] = oldperm[i];
+        }
+        out[out.length-1] = oldperm.length+1;
+        return out;
+    }
+
+    public static Integer[] swap(Integer[] perm){
         Random random = new Random();
         int index1,index2;
         do{
