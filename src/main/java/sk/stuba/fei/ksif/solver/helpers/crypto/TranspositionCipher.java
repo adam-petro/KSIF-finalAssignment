@@ -170,10 +170,8 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
     private Integer[] inversePerm(Integer[] permutation){
         Integer[] retVal = new Integer[permutation.length];
 
-        int j = 0;
-        for (int i = permutation.length-1; i >= 0; i--){
-            retVal[j] = permutation[i];
-            j++;
+        for (int i = 0; i < permutation.length; i++){
+            retVal[permutation[i]-1] = i+1;
         }
 
         return retVal;
