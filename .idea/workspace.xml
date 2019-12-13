@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="254fc2e8-ad59-4e72-b5a1-5109fbaf43fa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sk.telegraf.dic" afterDir="false" />
+    <list default="true" id="254fc2e8-ad59-4e72-b5a1-5109fbaf43fa" name="Default Changelist" comment="added sk dict, cols and rows tweaks, not working if row encrypted">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/bigram/Bigram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/bigram/Bigram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/common/Misc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/common/Misc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/Cipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/Cipher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/TranspositionCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/TranspositionCipher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/BigramHC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/BigramHC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/DictionaryHC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/DictionaryHC.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -34,11 +28,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/TranspositionCipher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="114" column="12" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
+            <state relative-caret-position="148">
+              <caret line="97" column="25" lean-forward="true" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="26" column="391" lean-forward="true" selection-start-line="26" selection-start-column="391" selection-end-line="26" selection-end-column="391" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,22 +95,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="56" lean-forward="true" selection-start-line="24" selection-start-column="56" selection-end-line="24" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/DictionaryHC.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="846">
-              <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+            <state relative-caret-position="262">
+              <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -168,11 +162,11 @@
         <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/HillClimb.java" />
         <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/TranspositionKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/Cipher.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/DictionaryHC.java" />
         <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/common/TextStatistics.java" />
         <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/BigramHC.java" />
-        <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/DictionaryHC.java" />
         <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/TranspositionCipher.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java" />
       </list>
     </option>
   </component>
@@ -271,7 +265,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576255093009" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576257852284" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -338,7 +332,7 @@
       <workItem from="1576068012330" duration="14046000" />
       <workItem from="1576088379927" duration="2904000" />
       <workItem from="1576166213460" duration="2577000" />
-      <workItem from="1576239982483" duration="14260000" />
+      <workItem from="1576239982483" duration="17127000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit, created project structure">
       <created>1575894785925</created>
@@ -396,11 +390,18 @@
       <option name="project" value="LOCAL" />
       <updated>1576240774635</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added sk dict, cols and rows tweaks, not working if row encrypted">
+      <created>1576255344051</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1576255344051</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44462000" />
+    <option name="totallyTimeSpent" value="47329000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -424,7 +425,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.19176598" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46153846" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.468039" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -445,37 +446,6 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21162046" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.19176598" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.468039" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49946696" weight="0.22946176" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.4546742" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32719395" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -521,13 +491,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="initial commit, created project structure" />
     <MESSAGE value="added placeholder files to create project structure" />
     <MESSAGE value="added maven and jenetics library" />
     <MESSAGE value="Started DictionaryHC" />
     <MESSAGE value="Refactored code" />
     <MESSAGE value="minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes" />
+    <MESSAGE value="added sk dict, cols and rows tweaks, not working if row encrypted" />
+    <option name="LAST_COMMIT_MESSAGE" value="added sk dict, cols and rows tweaks, not working if row encrypted" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/sk/stuba/fei/ksif/solver/methods/Genetic/HillClimb/test.java" />
@@ -679,26 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/DictionaryHC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="846">
-          <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="56" lean-forward="true" selection-start-line="24" selection-start-column="56" selection-end-line="24" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/BigramHC.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="757">
@@ -709,10 +661,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/methods/DictionaryHC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/helpers/crypto/TranspositionCipher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="114" column="12" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="12" />
+        <state relative-caret-position="148">
+          <caret line="97" column="25" lean-forward="true" selection-start-line="97" selection-start-column="25" selection-end-line="97" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sk/stuba/fei/ksif/solver/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="26" column="391" lean-forward="true" selection-start-line="26" selection-start-column="391" selection-end-line="26" selection-end-column="391" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

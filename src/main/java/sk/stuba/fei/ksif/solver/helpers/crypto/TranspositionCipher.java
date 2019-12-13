@@ -40,9 +40,9 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
             j++;
         }
 
-
+        printMatrix(matrixOfChars);
         matrixOfChars = permutateCols(matrixOfChars,permutation);
-
+        printMatrix(matrixOfChars);
         StringBuilder stringBuilder = new StringBuilder();
 
 
@@ -92,7 +92,14 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
         while (counter < string.length()){
             if (i < numberOfLines && j < lengthOfPermutation){
                 if (Character.isLetter(string.charAt(counter))) {
-                    matrixOfChars[i][j] = string.charAt(counter);
+                    if(row){
+                        matrixOfChars[j][i] = string.charAt(counter);
+                    }
+                    else{
+                        matrixOfChars[i][j] = string.charAt(counter);
+                    }
+
+
                     if(i==numberOfLines-1 && index(permutation,j+1)> longcol-1 && longcol>0){
                         //i++;
                         matrixOfChars[i][j] = ' ';
@@ -107,27 +114,28 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
                 counter++;
             }
         }
-        //printMatrix(matrixOfChars);
+        printMatrix(matrixOfChars);
         matrixOfChars = permutateCols(matrixOfChars,permutation);
-        //printMatrix(matrixOfChars);
+        printMatrix(matrixOfChars);
         StringBuilder stringBuilder = new StringBuilder();
 
-        if(!row) {
-            // po stlpoch
+        if(row) {
+            // po riadkoch
             for (i = 0; i < numberOfLines; i++) {
                 for (j = 0; j < lengthOfPermutation; j++) {
                     if (!(matrixOfChars[i][j] == ' '))
                         stringBuilder.append(matrixOfChars[i][j]);
                 }
             }
+
         }
 
-        // po riadkoch
+        // po stlpcoch
         else {
-            for (i = 0; i < lengthOfPermutation; i++) {
-                for (j = 0; j < numberOfLines; j++) {
-                    if (!(matrixOfChars[j][i] == ' '))
-                        stringBuilder.append(matrixOfChars[j][i]);
+            for (i = 0; i < numberOfLines; i++) {
+                for (j = 0; j < lengthOfPermutation; j++) {
+                    if (!(matrixOfChars[i][j] == ' '))
+                        stringBuilder.append(matrixOfChars[i][j]);
                 }
             }
         }
