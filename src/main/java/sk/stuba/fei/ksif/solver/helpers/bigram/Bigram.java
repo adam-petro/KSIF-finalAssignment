@@ -1,13 +1,22 @@
 package sk.stuba.fei.ksif.solver.helpers.bigram;
 
 import sk.stuba.fei.ksif.solver.helpers.common.*;
+import sk.stuba.fei.ksif.solver.helpers.common.Misc.*;
 
 import java.util.Map;
 
 public class Bigram {
-    public static double count (String text){
+    public static double count (String text, Language language){
+        double ref[][];
 
-        double[][] ref = (double[][]) Text.readFromFile("_bigrams.bin");
+        if(language== Language.SK){
+            ref = (double[][]) Text.readFromFile("skbigrams.bin");
+        }
+        else{
+            ref = (double[][]) Text.readFromFile("_bigrams.bin");
+
+        }
+
         Map<String, Double> bigrams = TextStatistics.readNgram(text,2,true);
         char first,second;
         double distance = 0.0;

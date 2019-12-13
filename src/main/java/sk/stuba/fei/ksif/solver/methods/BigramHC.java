@@ -1,18 +1,24 @@
 package sk.stuba.fei.ksif.solver.methods;
+import com.sun.org.apache.xerces.internal.xs.StringList;
+import sk.stuba.fei.ksif.solver.helpers.common.Text;
+import sk.stuba.fei.ksif.solver.helpers.common.TextStatistics;
 import sk.stuba.fei.ksif.solver.helpers.crypto.Key;
 import sk.stuba.fei.ksif.solver.helpers.crypto.TranspositionCipher;
 import sk.stuba.fei.ksif.solver.helpers.crypto.TranspositionKey;
+import sk.stuba.fei.ksif.solver.helpers.common.Misc.*;
 import sk.stuba.fei.ksif.solver.helpers.bigram.Bigram;
+
+import java.util.*;
 
 import static sk.stuba.fei.ksif.solver.helpers.common.Misc.fac;
 
 public class BigramHC {
 
 
-    public static double HillClimb(String ciphertext){
+    public static void HillClimb(String ciphertext, Language language){
 
 
-        final int maxkeyLen = 14;
+        final int maxkeyLen = 7;
         final int minKeyLen = 2;
         final int maxIterations = 1000000;
 
@@ -20,45 +26,61 @@ public class BigramHC {
         TranspositionCipher transpositionCipher  = new TranspositionCipher();
         TranspositionKey transpositionKey = new TranspositionKey(Key.randomKey(minKeyLen));
 
-        String ot = transpositionCipher.decryption(transpositionKey,ciphertext);
+        String ot1 = transpositionCipher.decryption(transpositionKey,ciphertext,true);
+        String ot2 = transpositionCipher.decryption(transpositionKey,ciphertext,true);
+        String bestot;
         int[] factorials = new int[maxkeyLen];
         for(int fac = 0; fac < maxkeyLen;fac++){
             factorials[fac]=fac(fac+1);
         }
-        double fitness = Bigram.count(ciphertext);
+        double fitness = Bigram.count(ciphertext, language);
+        double fitness1;
+        double fitness2;
         double bestfitness = fitness;
 
-        Integer[] perm,bestPerm;
+        Integer[] perm;
         perm = Key.randomKey(2);
-        bestPerm = perm;
-        String bestot = new String();
+        Map<Integer[],String>bestVals = new LinkedHashMap<>();
         int iteration = 0;
+        long startTime = System.nanoTime();
+        for (int i=minKeyLen;i<=maxkeyLen;i++){
 
-        for (int i=minKeyLen;i<maxkeyLen;++i){
-
+            perm = Key.randomKey(i);
             transpositionKey.setPermutation(perm);
 
-            for(int j = 0; j < factorials[i]/2;j++){
+            for(int j = 0; j < factorials[i-1]/2;j++){
                 ++iteration;
 
-                //if(j>factorials[i])break;
+
                 //swap
 
-                Key.swap(perm);
                 Integer[] oldPerm = perm;
-
+                Key.swap(perm);
+                transpositionKey.setPermutation(perm);
                 //OT
-                ot = transpositionCipher.decryption(transpositionKey,ciphertext);
+                ot1 = transpositionCipher.decryption(transpositionKey,ciphertext, true);
+                ot2 = transpositionCipher.decryption(transpositionKey,ciphertext, false);
+                ot1 = Text.convertToTSA(ot1,false);
+                ot2 = Text.convertToTSA(ot2,false);
 
-                //vyhodnotenie fitness
-                fitness = Bigram.count(ot);
+//
+                        //vyhodnotenie fitness
+                fitness1 = Bigram.count(ot1, language);
+                fitness2 = Bigram.count(ot2, language);
+                if (fitness1<fitness2){
+                    bestot = ot1;
+                    fitness=fitness1;
+                }
+                else{
+                    bestot=ot2;
+                    fitness=fitness2;
+                }
 
                 //ak je sused lepsi
                 if(fitness < bestfitness){
-                    System.out.println(i+". "+iteration+". "+fitness+" "+transpositionKey.toString()+"\n"+ot);
+                    System.out.println(i + ". " + iteration + ". " + fitness + " " + Arrays.toString(perm) + " time:" + ((System.nanoTime() - startTime) / 1000000) + "ms\n" + bestot);
                     bestfitness=fitness;
-                    bestot=ot;
-                    bestPerm = perm;
+                    bestVals.put(perm,bestot);
 
                 }
                 //ak nie vratim sa spat
@@ -73,9 +95,6 @@ public class BigramHC {
                 }
             }
         }
-        System.out.println(bestPerm+"\n"+bestot);
-
-        return 0.0;
     }
 
 

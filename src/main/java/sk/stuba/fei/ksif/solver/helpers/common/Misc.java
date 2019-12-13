@@ -8,4 +8,8 @@ public class Misc {
         }
         return i * fac(i-1);
     }
+    public enum Language{
+        SK,
+        EN
+    }
 }

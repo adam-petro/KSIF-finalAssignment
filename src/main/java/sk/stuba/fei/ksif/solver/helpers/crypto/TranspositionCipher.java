@@ -7,7 +7,7 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
 
 
     @Override
-    public String encryption(TranspositionKey key, String string) {
+    public String encryption(TranspositionKey key, String string, Boolean row) {
         // [stlpce][riadky]
         string = Text.convertToTSA(string,false);
         Integer[] permutation = key.getPermutation();
@@ -46,13 +46,13 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
         StringBuilder stringBuilder = new StringBuilder();
 
 
-        boolean row = false;
 
         if (row){
             // po riadkoch
             for (i = 0; i < numberOfLines; i++){
                 for (j = 0; j < lengthOfPermutation; j++){
-                    stringBuilder.append(matrixOfChars[i][j]);
+                    if(matrixOfChars[i][j]!=' ')
+                        stringBuilder.append(matrixOfChars[i][j]);
                 }
             }
         }
@@ -76,7 +76,7 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
     }
 
     @Override
-    public String decryption(TranspositionKey key, String string) {
+    public String decryption(TranspositionKey key, String string, Boolean row) {
         // [stlpce][riadky]
         Integer[] permutation = inversePerm(key.getPermutation());
         permutation = key.getPermutation();
@@ -112,22 +112,26 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
         //printMatrix(matrixOfChars);
         StringBuilder stringBuilder = new StringBuilder();
 
-        // po stlpoch
-        for (i = 0; i < numberOfLines; i++){
-            for (j = 0; j < lengthOfPermutation; j++){
-                if(!(matrixOfChars[i][j]==' '))
-                    stringBuilder.append(matrixOfChars[i][j]);
+        if(!row) {
+            // po stlpoch
+            for (i = 0; i < numberOfLines; i++) {
+                for (j = 0; j < lengthOfPermutation; j++) {
+                    if (!(matrixOfChars[i][j] == ' '))
+                        stringBuilder.append(matrixOfChars[i][j]);
+                }
             }
         }
 
         // po riadkoch
-        /*
-        for (i = 0; i < lengthOfPermutation; i++){
-            for (j = 0; j < numberOfLines; j++){
-                stringBuilder.append(matrixOfChars[j][i]);
+        else {
+            for (i = 0; i < lengthOfPermutation; i++) {
+                for (j = 0; j < numberOfLines; j++) {
+                    if (!(matrixOfChars[j][i] == ' '))
+                        stringBuilder.append(matrixOfChars[j][i]);
+                }
             }
         }
-         */
+
 
         return stringBuilder.toString();
     }
@@ -170,8 +174,10 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
     private Integer[] inversePerm(Integer[] permutation){
         Integer[] retVal = new Integer[permutation.length];
 
-        for (int i = 0; i < permutation.length; i++){
-            retVal[permutation[i]-1] = i+1;
+        int j = 0;
+        for (int i = permutation.length-1; i >= 0; i--){
+            retVal[j] = permutation[i];
+            j++;
         }
 
         return retVal;
