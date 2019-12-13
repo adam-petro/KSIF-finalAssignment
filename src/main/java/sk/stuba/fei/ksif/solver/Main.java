@@ -19,5 +19,6 @@ public class Main {
         String cipherText2 = transpositionCipher.encryption(transpositionKey,"But somehow, it’s possible. It also implies that cause is a misnomer: if existence is eternal, then cause is not all that important. Existence, without a beginning or end, continues to change its form. In addition, the concept of time has to be thrown out as well if we consider the nature of the universe");
         String cipherText3 = transpositionCipher.encryption(transpositionKey,"Without a beginning or end to existence, time is rendered irrelevant. Sure, it is a useful tool in our daily lives, but it is not a universal fact. Time is just our perception of duration within an eternal universe.");
 
+        DictionaryHC.HillClimb(cipherText1);
     }
 }

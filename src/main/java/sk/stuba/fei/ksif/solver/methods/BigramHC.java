@@ -38,7 +38,7 @@ public class BigramHC {
 
             transpositionKey.setPermutation(perm);
 
-            for(int j = 0; j < factorials[i];j++){
+            for(int j = 0; j < factorials[i]/2;j++){
                 ++iteration;
 
                 //if(j>factorials[i])break;

@@ -4,6 +4,7 @@ import sk.stuba.fei.ksif.solver.helpers.crypto.TranspositionCipher;
 import sk.stuba.fei.ksif.solver.helpers.crypto.TranspositionKey;
 import sk.stuba.fei.ksif.solver.helpers.dictionary.Node;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class DictionaryHC {
 
             transpositionKey.setPermutation(perm);
 
-            for(int j = 0; j < factorials[i-1];j++){
+            for(int j = 0; j < factorials[i-1]/2;j++){
                 iteration++;
 
                 //if(j>factorials[i])break;
