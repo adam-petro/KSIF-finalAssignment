@@ -40,9 +40,9 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
             j++;
         }
 
-        printMatrix(matrixOfChars);
+        //printMatrix(matrixOfChars);
         matrixOfChars = permutateCols(matrixOfChars,permutation);
-        printMatrix(matrixOfChars);
+        //printMatrix(matrixOfChars);
         StringBuilder stringBuilder = new StringBuilder();
 
 
@@ -89,34 +89,61 @@ public class TranspositionCipher extends Cipher<TranspositionKey> {
         int counter = 0;
         int longcol = string.length() % permutation.length;
 
-        while (counter < string.length()){
-            if (i < numberOfLines && j < lengthOfPermutation){
-                if (Character.isLetter(string.charAt(counter))) {
-                    if(row){
-                        matrixOfChars[j][i] = string.charAt(counter);
-                    }
-                    else{
-                        matrixOfChars[i][j] = string.charAt(counter);
-                    }
+        if (row) {
+            while (counter < string.length()) {
+                if (i < lengthOfPermutation && j < numberOfLines) {
+                    if (Character.isLetter(string.charAt(counter))) {
+
+                            matrixOfChars[j][i] = string.charAt(counter);
 
 
-                    if(i==numberOfLines-1 && index(permutation,j+1)> longcol-1 && longcol>0){
-                        //i++;
-                        matrixOfChars[i][j] = ' ';
-                        counter--;
+
+                        if (j == numberOfLines - 1 && index(permutation, i + 1) > longcol - 1 && longcol > 0) {
+                            //i++;
+                            matrixOfChars[j][i] = ' ';
+                            counter--;
+                        }
+                        i++;
+                        if (i == lengthOfPermutation) {
+                            j++;
+                            i = 0;
+                        }
+
                     }
-                    i++;
-                    if (i == numberOfLines){
-                        j++;
-                        i = 0;
-                    }
+                    counter++;
                 }
-                counter++;
+            }
+
+        }else{
+            while (counter < string.length()) {
+                if (i < numberOfLines && j < lengthOfPermutation) {
+                    if (Character.isLetter(string.charAt(counter))) {
+
+                            matrixOfChars[i][j] = string.charAt(counter);
+
+
+
+                        if (i == numberOfLines - 1 && index(permutation, j + 1) > longcol - 1 && longcol > 0) {
+                            //i++;
+                            matrixOfChars[i][j] = ' ';
+                            counter--;
+                        }
+                        i++;
+                        if (i == numberOfLines) {
+                            j++;
+                            i = 0;
+                        }
+
+                    }
+                    counter++;
+                }
             }
         }
-        printMatrix(matrixOfChars);
+
+
+        //printMatrix(matrixOfChars);
         matrixOfChars = permutateCols(matrixOfChars,permutation);
-        printMatrix(matrixOfChars);
+        //printMatrix(matrixOfChars);
         StringBuilder stringBuilder = new StringBuilder();
 
         if(row) {

@@ -17,8 +17,8 @@ public class DictionaryHC{
 
     public static void HillClimb(String ciphertext, Language language){
 
-        final int maxkeyLen = 4;
-        final int minKeyLen = 2;
+        final int maxkeyLen = 12;
+        final int minKeyLen = 12;
         final int maxIterations = 1000000;
 
         List<String> words;
@@ -47,7 +47,7 @@ public class DictionaryHC{
         double bestfitness = fitness;
 
         Integer[] perm;
-        perm = Key.randomKey(2);
+        perm = Key.randomKey(minKeyLen);
         Map<Integer[],String>bestVals = new LinkedHashMap<>();
 
         int iteration = 0;
@@ -74,20 +74,31 @@ public class DictionaryHC{
                 //vyhodnotenie fitness
                 fitness1 = node.evaluate(ot1,2,15);
                 fitness2 = node.evaluate(ot2,2,15);
+               // boolean row;
                 if (fitness1>fitness2){
                     bestot = ot1;
                     fitness=fitness1;
+                    //row = true;
                 }
                 else{
                     bestot=ot2;
                     fitness=fitness2;
+                    //row = false;
                 }
 
                 //ak je sused lepsi
                 if (fitness > bestfitness) {
-                    System.out.println(i + ". " + iteration + ". " + fitness + " " + Arrays.toString(transpositionKey.getPermutation()) + " time:" + ((System.nanoTime() - startTime) / 1000000) + "ms\n" + bestot);
+                    System.out.print(i + ". " + iteration + ". " + fitness + " "
+                            + Arrays.toString(transpositionKey.getPermutation()));
+                   /* if(row)
+                        System.out.print(" Riadkova");
+                        else
+                        System.out.print(" Stlpcova");
+*/
+                    System.out.println(" time:" + ((System.nanoTime() - startTime) / 1000000) + "ms\n" + bestot);
                     bestfitness = fitness;
                     bestVals.put(perm, bestot);
+
                 }
 
 

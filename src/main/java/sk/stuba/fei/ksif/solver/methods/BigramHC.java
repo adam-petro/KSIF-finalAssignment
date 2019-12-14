@@ -18,9 +18,9 @@ public class BigramHC {
     public static void HillClimb(String ciphertext, Language language){
 
 
-        final int maxkeyLen = 7;
-        final int minKeyLen = 2;
-        final int maxIterations = 1000000;
+        final int maxkeyLen = 11;
+        final int minKeyLen = 11;
+        final int maxIterations = 100000;
 
 
         TranspositionCipher transpositionCipher  = new TranspositionCipher();
@@ -39,7 +39,7 @@ public class BigramHC {
         double bestfitness = fitness;
 
         Integer[] perm;
-        perm = Key.randomKey(2);
+        perm = Key.randomKey(minKeyLen);
         Map<Integer[],String>bestVals = new LinkedHashMap<>();
         int iteration = 0;
         long startTime = System.nanoTime();
@@ -67,18 +67,28 @@ public class BigramHC {
                         //vyhodnotenie fitness
                 fitness1 = Bigram.count(ot1, language);
                 fitness2 = Bigram.count(ot2, language);
+                //boolean row;
                 if (fitness1<fitness2){
                     bestot = ot1;
                     fitness=fitness1;
+                    //row = true;
                 }
                 else{
                     bestot=ot2;
                     fitness=fitness2;
+                    //row = false;
                 }
 
                 //ak je sused lepsi
                 if(fitness < bestfitness){
-                    System.out.println(i + ". " + iteration + ". " + fitness + " " + Arrays.toString(perm) + " time:" + ((System.nanoTime() - startTime) / 1000000) + "ms\n" + bestot);
+                    System.out.print(i + ". " + iteration + ". " + fitness + " "
+                            + Arrays.toString(transpositionKey.getPermutation()));
+                   /* if(row)
+                        System.out.print(" Riadkova");
+                    else
+                        System.out.print(" Stlpcova");
+*/
+                    System.out.println(" time:" + ((System.nanoTime() - startTime) / 1000000) + "ms\n" + bestot);
                     bestfitness=fitness;
                     bestVals.put(perm,bestot);
 
