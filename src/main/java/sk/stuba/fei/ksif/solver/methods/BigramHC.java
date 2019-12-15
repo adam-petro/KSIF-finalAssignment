@@ -18,8 +18,8 @@ public class BigramHC {
     public static void HillClimb(String ciphertext, Language language){
 
 
-        final int maxkeyLen = 11;
-        final int minKeyLen = 11;
+        final int maxkeyLen = 13;
+        final int minKeyLen = 2;
         final int maxIterations = 100000;
 
 
