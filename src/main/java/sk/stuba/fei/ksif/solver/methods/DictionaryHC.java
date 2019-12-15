@@ -17,8 +17,8 @@ public class DictionaryHC{
 
     public static void HillClimb(String ciphertext, Language language){
 
-        final int maxkeyLen = 12;
-        final int minKeyLen = 12;
+        final int maxkeyLen = 13;
+        final int minKeyLen = 2;
         final int maxIterations = 1000000;
 
         List<String> words;
